@@ -1,4 +1,4 @@
-package entity;
+package com.kaya.brokerage_backend.brokerage_backend.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -7,17 +7,15 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
-public class Asset {
-
+@Table(name = "customers")
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private Long customerId;
+    private String name;
+    @Column(nullable = false, unique = true)
+    private String email;
     @Column(nullable = false)
-    private String assetName;
-    @Column(nullable = false)
-    private BigDecimal size;
-    @Column(nullable = false)
-    private BigDecimal usableSize;
+    private BigDecimal balanceTRY;
 }
