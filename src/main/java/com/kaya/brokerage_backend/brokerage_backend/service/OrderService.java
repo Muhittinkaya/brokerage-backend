@@ -65,17 +65,16 @@ public class OrderService {
             throw new Exception("Only PENDING orders can be canceled");
         }
 
-        // Refund assets or funds based on order type
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new Exception("Customer not found"));
 
         if (order.getOrderSide() == OrderSide.BUY) {
-            // Refund TRY
+
             customer.setBalanceTRY(customer.getBalanceTRY().add(
                     order.getPrice().multiply(order.getSize())
             ));
         } else {
-            // Refund asset
+
             Asset asset = assetRepository.findByCustomerIdAndAssetName(
                     customerId, order.getAssetName()
             );
@@ -87,7 +86,6 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    // Additional helper methods for order validation and processing
     private void validateAndProcessBuyOrder(Customer customer, String assetName,
                                             BigDecimal size, BigDecimal price) throws Exception {
         BigDecimal totalCost = size.multiply(price);

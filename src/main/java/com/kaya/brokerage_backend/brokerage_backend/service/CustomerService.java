@@ -30,7 +30,7 @@ public class CustomerService {
     }
 
     @Transactional
-    public void withdrawMoney(Long customerId, String iban, BigDecimal amount) throws Exception {
+    public void withdrawMoney(Long customerId, BigDecimal amount) throws Exception {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new Exception("Customer not found"));
 
@@ -40,17 +40,10 @@ public class CustomerService {
 
         customer.setBalanceTRY(customer.getBalanceTRY().subtract(amount));
         customerRepository.save(customer);
-
-        // In a real system, you'd integrate with a payment system here
     }
 
-    public List<Asset> listCustomerAssets(Long customerId, String assetNameFilter) {
+    public List<Asset> listCustomerAssets(Long customerId) {
         List<Asset> assets = assetRepository.findByCustomerId(customerId);
-
-        if (assetNameFilter != null && !assetNameFilter.isEmpty()) {
-            assets.removeIf(asset -> !asset.getAssetName().equals(assetNameFilter));
-        }
-
         return assets;
     }
 }

@@ -28,16 +28,14 @@ public class DatabaseInitializationConfig {
             OrderRepository orderRepository
     ) {
         return args -> {
-            // Only initialize if database is empty
+
             if (customerRepository.count() == 0) {
-                // Create Customers
                 Customer john = createCustomer("John Doe", "john@example.com", 10000.00);
                 Customer jane = createCustomer("Jane Smith", "jane@example.com", 15000.50);
                 Customer mike = createCustomer("Mike Johnson", "mike@example.com", 20000.00);
 
                 customerRepository.saveAll(Arrays.asList(john, jane, mike));
 
-                // Create Assets
                 Asset johnApple = createAsset(john, "AAPL", 50.0, 50.0);
                 Asset johnMicrosoft = createAsset(john, "MSFT", 30.0, 30.0);
                 Asset janeGoogle = createAsset(jane, "GOOGL", 20.0, 20.0);
@@ -45,7 +43,6 @@ public class DatabaseInitializationConfig {
 
                 assetRepository.saveAll(Arrays.asList(johnApple, johnMicrosoft, janeGoogle, mikeTesla));
 
-                // Create Orders
                 Order johnBuyOrder = createOrder(john, "AAPL", OrderSide.BUY, 10.0, 150.50);
                 Order janeSellOrder = createOrder(jane, "GOOGL", OrderSide.SELL, 5.0, 120.75);
                 Order mikeBuyOrder = createOrder(mike, "TSLA", OrderSide.BUY, 15.0, 200.25);

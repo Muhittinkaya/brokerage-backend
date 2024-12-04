@@ -19,7 +19,4 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             LocalDateTime startDate,
             LocalDateTime endDate
     );
-
-    List<Order> findByCustomerIdAndOrderStatus(Long customerId, OrderStatus status);
-
 }

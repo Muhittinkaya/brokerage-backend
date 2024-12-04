@@ -47,10 +47,9 @@ public class CustomerController {
     @PostMapping("/withdraw")
     public void withdrawMoney(
             @RequestParam Long customerId,
-            @RequestParam String iban,
             @RequestParam BigDecimal amount
     ) throws Exception {
-        customerService.withdrawMoney(customerId, iban, amount);
+        customerService.withdrawMoney(customerId, amount);
     }
 
     @Operation(summary = "List assets", description = "Retrieve a list of all assets")
@@ -62,9 +61,8 @@ public class CustomerController {
     })
     @GetMapping("/assets")
     public List<Asset> listAssets(
-            @RequestParam Long customerId,
-            @RequestParam(required = false) String assetNameFilter
+            @RequestParam Long customerId
     ) {
-        return customerService.listCustomerAssets(customerId, assetNameFilter);
+        return customerService.listCustomerAssets(customerId);
     }
 }
