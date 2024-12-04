@@ -6,7 +6,6 @@ This is a Spring Boot backend application for a brokerage firm, managing stock o
 ## Features
 - Order Management (Create, List, Delete)
 - Customer Operations (Deposit, Withdraw, List Assets)
-- Authentication and Authorization
 - Balance and Asset Integrity Checks
 
 ## Technologies Used
@@ -40,14 +39,6 @@ Import the Postman collection in `postman/brokerage-api.json` for API testing.
 
 ## Database
 - H2 Console: `http://localhost:8080/h2-console`
-- JDBC URL: `jdbc:h2:mem:brokerage_db`
+- JDBC URL: `jdbc:h2:file:./data/brokerage_db`
 - Username: `sa`
 - Password: (leave blank)
-
-## Authentication
-- Customer Login: `/api/auth/login`
-- Admin Login: `/api/admin/login`
-
-## Postman Collection Authorization
-1. Obtain JWT token via login endpoint
-2. Add token to Authorization header as Bearer token
