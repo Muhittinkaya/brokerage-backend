@@ -80,6 +80,9 @@ public class OrderService {
                     customerId, order.getAssetName()
             );
             asset.setUsableSize(asset.getUsableSize().add(order.getSize()));
+            customer.setBalanceTRY(customer.getBalanceTRY().subtract(
+                    order.getPrice().multiply(order.getSize())
+            ));
         }
 
         order.setOrderStatus(OrderStatus.CANCELED);

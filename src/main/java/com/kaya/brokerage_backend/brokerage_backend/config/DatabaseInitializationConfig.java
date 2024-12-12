@@ -36,10 +36,10 @@ public class DatabaseInitializationConfig {
 
                 customerRepository.saveAll(Arrays.asList(john, jane, mike));
 
-                Asset johnApple = createAsset(john, "AAPL", 50.0, 50.0);
-                Asset johnMicrosoft = createAsset(john, "MSFT", 30.0, 30.0);
-                Asset janeGoogle = createAsset(jane, "GOOGL", 20.0, 20.0);
-                Asset mikeTesla = createAsset(mike, "TSLA", 40.0, 40.0);
+                Asset johnApple = createAsset(john, "AAPL", 100.0, 100.0);
+                Asset johnMicrosoft = createAsset(john, "MSFT", 100.0, 100.0);
+                Asset janeGoogle = createAsset(jane, "GOOGL", 100.0, 100.0);
+                Asset mikeTesla = createAsset(mike, "TSLA", 100.0, 100.0);
 
                 assetRepository.saveAll(Arrays.asList(johnApple, johnMicrosoft, janeGoogle, mikeTesla));
 
