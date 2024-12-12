@@ -47,7 +47,7 @@ public class OrderService {
         order.setOrderSide(side);
         order.setSize(size);
         order.setPrice(price);
-        order.setOrderStatus(OrderStatus.PENDING);
+        order.setOrderStatus(OrderStatus.MATCHED);
         order.setCreateDate(LocalDateTime.now());
 
         return orderRepository.save(order);
