@@ -12,11 +12,6 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    @Query("SELECT o FROM Order o WHERE o.customerId = :customerId " +
-            "AND o.createDate BETWEEN :startDate AND :endDate")
-    List<Order> findByCustomerAndDateRange(
-            Long customerId,
-            LocalDateTime startDate,
-            LocalDateTime endDate
-    );
+    List<Order> findByCustomerIdAndCreateDateBetween(Long customerId, LocalDateTime startDate, LocalDateTime endDate);
+
 }

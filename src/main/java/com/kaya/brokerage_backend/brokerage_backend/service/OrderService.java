@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -84,6 +85,14 @@ public class OrderService {
         order.setOrderStatus(OrderStatus.CANCELED);
         customerRepository.save(customer);
         orderRepository.save(order);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Order> listOrders(Long customerId, LocalDateTime startDate, LocalDateTime endDate) {
+        if (customerId == null || startDate == null || endDate == null) {
+            throw new IllegalArgumentException("Customer ID, startDate, and endDate are required");
+        }
+        return orderRepository.findByCustomerIdAndCreateDateBetween(customerId, startDate, endDate);
     }
 
     private void validateAndProcessBuyOrder(Customer customer, String assetName,

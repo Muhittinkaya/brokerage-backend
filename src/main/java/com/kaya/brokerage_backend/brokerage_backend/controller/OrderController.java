@@ -71,16 +71,11 @@ public class OrderController {
     public List<Order> listOrders(
             @RequestParam Long customerId,
             @RequestParam LocalDateTime startDate,
-            @RequestParam LocalDateTime endDate,
-            @RequestParam(required = false) OrderStatus status
+            @RequestParam LocalDateTime endDate
     ) {
-        List<Order> orders = orderRepository.findByCustomerAndDateRange(
+        List<Order> orders = orderService.listOrders(
                 customerId, startDate, endDate
         );
-
-        if (status != null) {
-            orders.removeIf(order -> order.getOrderStatus() != status);
-        }
 
         return orders;
     }
