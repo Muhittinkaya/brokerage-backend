@@ -105,6 +105,16 @@ public class OrderService {
         // Deduct funds
         customer.setBalanceTRY(customer.getBalanceTRY().subtract(totalCost));
         customerRepository.save(customer);
+
+        Asset asset = assetRepository.findByCustomerIdAndAssetName(customer.getId(), assetName);
+        if (asset == null) {
+            asset = new Asset();
+        }
+        asset.setAssetName(assetName);
+        asset.setUsableSize(size);
+        asset.setCustomerId(customer.getId());
+        asset.setSize(size);
+        assetRepository.save(asset);
     }
 
     private void validateAndProcessSellOrder(Customer customer, String assetName,
@@ -113,6 +123,12 @@ public class OrderService {
         if (asset == null || asset.getUsableSize().compareTo(size) < 0) {
             throw new Exception("Insufficient asset size");
         }
+
+        BigDecimal totalCostAfterSell = size.multiply(price);
+
+        // Add to funds
+        customer.setBalanceTRY(customer.getBalanceTRY().add(totalCostAfterSell));
+        customerRepository.save(customer);
 
         // Reserve assets for selling
         asset.setUsableSize(asset.getUsableSize().subtract(size));

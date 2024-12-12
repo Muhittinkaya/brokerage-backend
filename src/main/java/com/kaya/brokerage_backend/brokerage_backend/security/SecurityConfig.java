@@ -45,11 +45,6 @@ public class SecurityConfig {
                 .roles("ADMIN")
                 .build();
 
-        UserDetails customer = User.withUsername("customer")
-                .password(passwordEncoder().encode("customerPass"))
-                .roles("CUSTOMER")
-                .build();
-
-        return new InMemoryUserDetailsManager(admin, customer);
+        return new InMemoryUserDetailsManager(admin);
     }
 }
