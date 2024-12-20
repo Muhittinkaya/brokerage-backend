@@ -1,0 +1,9 @@
+2024-12-04 23:17:04.768653+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]CUSTOMERS"; expected "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"; SQL statement:
+CUSTOMERS [42001-232]
+2024-12-05 01:20:32.295141+03:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]ASSETS"; expected "ALTER, ANALYZE"; SQL statement:
+ASSETS [42001-232]
+2024-12-13 13:50:40.415337+03:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CUSTOMER" not found; SQL statement:
+SELECT * FROM customer [42102-232]
