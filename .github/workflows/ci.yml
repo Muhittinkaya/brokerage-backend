@@ -38,3 +38,7 @@ jobs:
       - name: Run Docker container
         run: |
           docker run -d -p 8080:8080 brokerage-backend
+          docker ps  # Check if the container is running
+          docker logs $(docker ps -q)  # Get the logs of the running container
+
+          - name: Run Docker container
